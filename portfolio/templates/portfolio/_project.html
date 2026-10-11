@@ -1,0 +1,13 @@
+<article class="proj" data-kind="{{ p.kind }}">
+  <header>
+    <h3>{% if p.link %}<a href="{{ p.link }}" rel="noopener">{{ p.name }}</a>{% else %}{{ p.name }}{% endif %}</h3>
+    <p class="muted small">{{ p.kind }}</p>
+  </header>
+  <div>
+    <p class="proj-summary">{{ p.summary }}</p>
+    {% if detail %}
+    <ul class="proj-points">{% for h in p.highlights %}<li>{{ h }}</li>{% endfor %}</ul>
+    {% endif %}
+    <ul class="tags">{% for t in p.tags %}<li>{{ t }}</li>{% endfor %}</ul>
+  </div>
+</article>

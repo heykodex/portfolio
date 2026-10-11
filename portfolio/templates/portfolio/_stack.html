@@ -1,0 +1,11 @@
+<div class="stack-grid">
+  {% for g in stack %}
+  <section class="stack-group">
+    <h3>{{ g.group }}</h3>
+    <p class="muted">{{ g.blurb }}</p>
+    <dl>
+      {% for i in g.items %}<div><dt>{{ i.name }}</dt>{% if detail %}<dd>{{ i.note }}</dd>{% endif %}</div>{% endfor %}
+    </dl>
+  </section>
+  {% endfor %}
+</div>

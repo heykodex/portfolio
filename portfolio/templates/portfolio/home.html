@@ -1,0 +1,88 @@
+{% extends "portfolio/base.html" %}
+{% load portfolio_extras %}
+{% block content %}
+<section class="hero">
+  <div class="wrap">
+    <h1>I build developer tools and ship them properly.</h1>
+    <p class="lede">I'm {{ profile.name }}, a solo developer at {{ profile.studio }}. Languages, simulators and apps, released with tests, CI and documentation that says what actually works.</p>
+    <div class="actions">
+      <a class="btn" href="{% url 'projects' %}">See the projects</a>
+      <a class="btn btn-ghost" href="https://github.com/{{ profile.github }}" rel="noopener">{{ profile.github }} on GitHub</a>
+    </div>
+
+    <div class="editor" aria-label="Code editor showing sample files">
+      <div class="editor-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <div class="tabs" role="tablist" aria-label="Files">
+          {% for s in snippets %}
+          <button role="tab" id="tab-{{ s.id }}" aria-controls="pane-{{ s.id }}" aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"{% if not forloop.first %} tabindex="-1"{% endif %}>{{ s.file }}</button>
+          {% endfor %}
+        </div>
+      </div>
+      {% for s in snippets %}
+      <div class="pane" role="tabpanel" id="pane-{{ s.id }}" aria-labelledby="tab-{{ s.id }}"{% if not forloop.first %} hidden{% endif %}>
+        <pre><code>{{ s.code|code_lines }}</code></pre>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="principles">
+  <div class="wrap">
+    <h2 class="display">Simple on the surface. Serious underneath.</h2>
+    <div class="principles">
+      {% for p in principles %}
+      <div><h3>{{ p.title }}</h3><p class="muted">{{ p.body }}</p></div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section-tint" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">Past projects</h2>
+      <p class="lede">Language design, physics and privacy-first apps from {{ profile.studio }}. A few of the {{ project_count }} I've shipped.</p>
+    </div>
+    <div class="proj-list">
+      {% for p in featured %}{% include "portfolio/_project.html" with detail=True %}{% endfor %}
+    </div>
+    <p class="more"><a class="btn btn-ghost" href="{% url 'projects' %}">Browse all {{ project_count }} projects</a></p>
+  </div>
+</section>
+
+<section class="section" id="stack">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">The tools I reach for</h2>
+      <p class="lede">Python first, then whatever the job asks for.</p>
+    </div>
+    {% include "portfolio/_stack.html" %}
+    <p class="more"><a class="btn btn-ghost" href="{% url 'stack' %}">How I use them</a></p>
+  </div>
+</section>
+
+<section class="section section-tint" id="socials">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">Find me online</h2>
+      <p class="lede">Code on GitHub, everything else on X.</p>
+    </div>
+    {% include "portfolio/_socials.html" %}
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="wrap">
+    <div class="cta">
+      <h2 class="display">Got something to build?</h2>
+      <p class="lede">Send a message to @{{ profile.twitter }} on X with what you have in mind.</p>
+      <div class="actions">
+        <a class="btn btn-invert" href="https://x.com/{{ profile.twitter }}" rel="noopener">Message on X</a>
+        <a class="btn btn-ghost-invert" href="https://github.com/{{ profile.github }}" rel="noopener">View GitHub</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,9 @@
+<div class="socials">
+  {% for s in socials %}
+  <a class="social" href="{{ s.url }}" rel="noopener">
+    <span class="social-name">{{ s.name }}</span>
+    <span class="social-handle">{{ s.handle }}</span>
+    <span class="social-note muted">{{ s.note }}</span>
+  </a>
+  {% endfor %}
+</div>

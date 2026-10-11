@@ -1,0 +1,33 @@
+{% extends "portfolio/base.html" %}
+{% block title %}Projects · Kodex{% endblock %}
+{% block description %}Past projects by Kodex: languages, simulations, web platforms, desktop apps and bots.{% endblock %}
+{% block content %}
+<section class="page-head wrap">
+  <h1>Past projects</h1>
+  <p class="lede">Everything I've built under {{ profile.studio }}, from a configuration language to a moderation bot. Filter by kind to narrow it down.</p>
+  <div class="filters" role="group" aria-label="Filter projects" data-filters>
+    <button type="button" data-filter="all" aria-pressed="true">All</button>
+    {% for k in kinds %}<button type="button" data-filter="{{ k }}" aria-pressed="false">{{ k }}</button>{% endfor %}
+  </div>
+  <p class="muted small status" data-status aria-live="polite">Showing {{ projects|length }} projects</p>
+</section>
+
+<section class="section-flush">
+  <div class="wrap proj-list" data-projects>
+    {% for p in projects %}{% include "portfolio/_project.html" with detail=True %}{% endfor %}
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="cta">
+      <h2 class="display">Want the next one to be yours?</h2>
+      <p class="lede">Tell me what you're building on X, or read the source of everything above on GitHub.</p>
+      <div class="actions">
+        <a class="btn btn-invert" href="https://x.com/{{ profile.twitter }}" rel="noopener">Message on X</a>
+        <a class="btn btn-ghost-invert" href="{% url 'stack' %}">See the stack</a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

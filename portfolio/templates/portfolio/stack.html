@@ -1,0 +1,39 @@
+{% extends "portfolio/base.html" %}
+{% block title %}Stack &amp; socials · Kodex{% endblock %}
+{% block description %}The tools Kodex builds with, how projects ship, and where to find him online.{% endblock %}
+{% block content %}
+<section class="page-head wrap">
+  <h1>Stack &amp; socials</h1>
+  <p class="lede">What I build with, how a project goes from idea to GitHub, and where to find me.</p>
+</section>
+
+<section class="section-flush">
+  <div class="wrap">
+    {% include "portfolio/_stack.html" with detail=True %}
+  </div>
+</section>
+
+<section class="section section-tint" id="practice">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">How a project ships</h2>
+      <p class="lede">The same six steps every time. The order matters.</p>
+    </div>
+    <ol class="steps">
+      {% for s in practice %}
+      <li><h3>{{ s.title }}</h3><p class="muted">{{ s.body }}</p></li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section" id="socials">
+  <div class="wrap">
+    <div class="section-head">
+      <h2 class="display">Socials</h2>
+      <p class="lede">Code on GitHub, everything else on X.</p>
+    </div>
+    {% include "portfolio/_socials.html" %}
+  </div>
+</section>
+{% endblock %}

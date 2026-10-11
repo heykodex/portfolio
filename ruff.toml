@@ -1,0 +1,8 @@
+line-length = 100
+exclude = ["staticfiles"]
+
+[lint]
+select = ["E", "F", "I", "B"]
+
+[lint.per-file-ignores]
+"portfolio/data.py" = ["E501"]
